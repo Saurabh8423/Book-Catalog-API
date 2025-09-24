@@ -1,11 +1,19 @@
-import React from 'react'
+const express = require("express");
 
-const bookRoutes = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+const Book = require("../models/bookModel");
 
-export default bookRoutes
+const router = express.Router();
+
+
+//Get entire Records
+
+router.get("/", async(req, res)=>{
+  try{
+    const bookData = await Book.find().sort({createdAt: -1});
+    res.status(200).json(bookData);
+  }catch(err){
+    res.status(400).json({error:err.message})
+  }
+})
+
+module.exports = router;
