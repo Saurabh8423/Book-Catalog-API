@@ -1,11 +1,36 @@
-import React from 'react'
+const mongoose = require("mongoose");
 
-const Book = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+const BookSchema = mongoose.Schema({
+  title: { 
+    type: String, 
+    required: true, 
+    trim: true 
+  },
 
-export default Book
+  author: { 
+    type: String, 
+    required: true, 
+    trim: true 
+  },
+
+  genre: { 
+    type: String, 
+    required: true, 
+    trim: true 
+  },
+
+  price: { 
+    type: Number, 
+    required: true 
+  },
+
+  inStock: { 
+    type: Boolean, 
+    default: true 
+  }
+
+});
+
+const Book = new mongoose.model("Book", BookSchema);
+
+module.exports = Book;

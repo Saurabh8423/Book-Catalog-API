@@ -1,11 +1,9 @@
-import React from 'react'
+const mongoose = require("mongoose");
 
-const db = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
-
-export default db
+mongoose.connect("mongodb://localhost:27017/Book")
+.then(() =>{
+  console.log("Connection is Established")
+})
+.catch((err) =>{
+  console.log(`Error is : ${err}`)
+})

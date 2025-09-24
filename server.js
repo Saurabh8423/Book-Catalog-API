@@ -1,11 +1,18 @@
-import React from 'react'
+const express = require("express");
 
-const server = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+const app = express();
 
-export default server
+
+//
+const port = process.env.PORT || 5000
+
+//DB Connection
+require("./config/db")
+
+app.get("/", (req, res)=> {
+    res.send("hello!")
+})
+
+app.listen(port, ()=>{
+    console.log(`Server is running at PORT: ${port}`);
+})
