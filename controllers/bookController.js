@@ -7,10 +7,22 @@ const getBooks = async(req, res)=>{
       const bookData = await Book.find().sort({createdAt: -1});
       res.status(200).json(bookData);
     }catch(err){
-      res.status(400).json({error:err.message})
+      res.status(400).json({error:err.message});
+    }
+}
+
+// Get Single Data
+const getBook = async(req, res)=>{
+   try{
+    const id = req.params.id
+      const bookData = await Book.find({_id: id});
+      res.status(200).json(bookData);
+    }catch(err){
+      res.status(400).json({error:err.message});
     }
 }
 
 module.exports = {
   getBooks,
+  getBook
 }
